@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" translatable="false">HMCL-PE</string>
+    <string name="app_name" translatable="false">HMCL-PE zink</string>
     <string name="app_full_name" translatable="false">Hello Minecraft! Launcher : Pocket Edition</string>
     <string name="app_name_pri" translatable="false">Hello Minecraft! Launcher</string>
     <string name="app_name_sec" translatable="false">Pocket Edition</string>
     <string name="version_name" translatable="false">v2.0.6</string>
-    <string name="app_bar_title" translatable="false">Hello Minecraft! Launcher Pocket Edition v2.0.6</string>
+    <string name="app_bar_title" translatable="false">Hello Minecraft! Launcher Pocket Edition v2.0.6 zink vgpu by𝓞𝔀𝓮梓</string>
 
     <string name="launcher_spinner_text" translatable="false">▲</string>
     <string name="dialog_add_offline_account_uuid" translatable="false">UUID</string>
@@ -31,6 +31,8 @@
     <string name="game_setting_ui_boat_renderer_virgl" translatable="false">VirGLRenderer (OpenGL 4.3)</string>
     <string name="game_setting_ui_pojav_renderer_gl4es_114" translatable="false">Holy GL4ES (OpenGL 2.1/3.2)</string>
     <string name="game_setting_ui_pojav_renderer_virgl" translatable="false">VirGLRenderer (OpenGL 4.3)</string>
+    <string name="game_setting_ui_pojav_renderer_opengles2_vgpu" translatable="false">VGPU (OpenGL 4.4)</string>
+    <string name="game_setting_ui_pojav_renderer_vulkan_zink" translatable="false">Vulkan_Zink (OpenGL 4.6)</string>
     <string name="dialog_color_selector_arrow" translatable="false">→</string>
     <string name="download_setting_ui_source_bmclapi" translatable="false">BMCLAPI（bangbang93，https://bmclapi2.bangbang93.com/）</string>
     <string name="hiper_ui_about_base" translatable="false">Based on HiPer</string>
