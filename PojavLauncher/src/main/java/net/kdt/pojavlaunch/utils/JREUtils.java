@@ -292,7 +292,12 @@ public class JREUtils {
             case "opengles3":
                 renderLibrary = "libgl4es_114.so";
                 break;
+            case "opengles2_vgpu":
+                renderLibrary = "libvgpu.so";
+                break;
             case "opengles3_virgl":
+                renderLibrary = "libOSMesa_81.so";
+                break;
             case "vulkan_zink":
                 renderLibrary = "libOSMesa_8.so";
                 break;
@@ -319,7 +324,12 @@ public class JREUtils {
             case "opengles3":
                 renderLibrary = "libgl4es_114.so";
                 break;
+            case "opengles2_vgpu":
+                renderLibrary = "libvgpu.so";
+                break;
             case "opengles3_virgl":
+                renderLibrary = "libOSMesa_81.so";
+                break;
             case "vulkan_zink":
                 renderLibrary = "libOSMesa_8.so";
                 break;
