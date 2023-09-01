@@ -772,7 +772,7 @@ bool loadSymbols_1() {
     char* fileNameExt = calloc(1, 1024);
     switch (config_renderer) {
         case RENDERER_VIRGL:
-            sprintf(fileName, "%s/libOSMesa_81.so", getenv("POJAV_NATIVEDIR"));
+            sprintf(fileNameExt, "%s/libOSMesa_81.so", getenv("POJAV_NATIVEDIR"));
             break;
     }
     void* dl_handle = dlopen(fileNameExt,RTLD_NOW|RTLD_GLOBAL|RTLD_NODELETE);
@@ -780,9 +780,9 @@ bool loadSymbols_1() {
         dl_handle = dlopen(fileNameExt,RTLD_NOW|RTLD_GLOBAL);
     }
     if (!dl_handle) {
-        dl_handle = dlopen(fileName,RTLD_NOW|RTLD_GLOBAL|RTLD_NODELETE);
+        dl_handle = dlopen(fileNameExt,RTLD_NOW|RTLD_GLOBAL|RTLD_NODELETE);
         if (!dl_handle) {
-            dl_handle = dlopen(fileName,RTLD_NOW|RTLD_GLOBAL);
+            dl_handle = dlopen(fileNameExt,RTLD_NOW|RTLD_GLOBAL);
         }
         printf("DlLoader: using external %s\n", fileNameExt);
     }
