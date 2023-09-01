@@ -732,7 +732,9 @@ bool loadSymbols() {
     switch (config_renderer) {
         case RENDERER_VK_ZINK:
             sprintf(fileName, "%s/libOSMesa_8.so", getenv("POJAV_NATIVEDIR"));
-            sprintf(fileNameExt, "%s/libOSMesa.so.8", getenv("POJAV_NATIVEDIR"));
+            break;
+        case RENDERER_VIRGL:
+            sprintf(fileName, "%s/libOSMesa_81.so", getenv("POJAV_NATIVEDIR"));
             break;
         case RENDERER_GL4ES:
             sprintf(fileName, "libEGL.so");
@@ -766,6 +768,9 @@ bool loadSymbols() {
             break;
         case RENDERER_GL4ES:
             dlsym_EGL(dl_handle);
+            break;
+        case RENDERER_VIRGL:
+            dlsym_OSMesa(dl_handle);
             break;
     }
 
