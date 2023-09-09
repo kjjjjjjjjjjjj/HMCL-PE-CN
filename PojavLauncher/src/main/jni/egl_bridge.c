@@ -765,7 +765,7 @@ bool loadSymbols() {
     switch(config_renderer) {
         case RENDERER_VK_ZINK:
         case RENDERER_VIRGL:
-            dlsym_OSNesa(dl_handle);
+            dlsym_OSMesa(dl_handle);
             break;
         case RENDERER_GL4ES:
             dlsym_EGL(dl_handle);
@@ -784,10 +784,10 @@ bool loadSymbolsVirGL() {
     config_renderer = RENDERER_VIRGL;
     loadSymbols();
 
-    char* fileName = calloc(1, 1024);
+    char* fileNameExt = calloc(1, 1024);
 
-    sprintf(fileName, "%s/libvirgl_test_server.so", getenv("POJAV_NATIVEDIR"));
-    void *handle = dlopen(fileName, RTLD_LAZY);
+    sprintf(fileNameExt, "%s/libvirgl_test_server.so", getenv("POJAV_NATIVEDIR"));
+    void *handle = dlopen(fileNameExt, RTLD_LAZY);
     printf("VirGL: libvirgl_test_server = %p\n", handle);
     if (!handle) {
         printf("VirGL: %s\n", dlerror());
@@ -795,7 +795,7 @@ bool loadSymbolsVirGL() {
     vtest_main_p = dlsym(handle, "vtest_main");
     vtest_swap_buffers_p = dlsym(handle, "vtest_swap_buffers");
 
-    free(fileName);
+    free(fileNameExt);
 }
 
 int pojavInit() {
