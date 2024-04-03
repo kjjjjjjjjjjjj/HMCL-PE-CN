@@ -1,6 +1,6 @@
 package com.tungsten.hmclpe.control;
 
-import net.kdt.pojavlaunch.keyboard.LWJGLGLFWKeycode;
+import net.kdt.pojavlaunch.keyboard.LwjglGlfwKeycode;
 
 import org.lwjgl.glfw.CallbackBridge;
 
@@ -12,9 +12,11 @@ public class LwjglCharSender implements CharacterSenderStrategy {
     public void sendBackspace(int launcher) {
         if (launcher == 1) {
             BoatInput.setKey(BoatKeycodes.KEY_BACKSPACE, '\u0008',true);
+            BoatInput.setKey(BoatKeycodes.KEY_BACKSPACE, '\u0008',false);
         }
         else if (launcher == 2) {
-            CallbackBridge.sendKeycode(LWJGLGLFWKeycode.GLFW_KEY_BACKSPACE, '\u0008', 0, 0, true);
+            CallbackBridge.sendKeycode(LwjglGlfwKeycode.GLFW_KEY_BACKSPACE, '\u0008', 0, 0, true);
+            CallbackBridge.sendKeycode(LwjglGlfwKeycode.GLFW_KEY_BACKSPACE, '\u0008', 0, 0, false);
         }
     }
 
@@ -25,7 +27,7 @@ public class LwjglCharSender implements CharacterSenderStrategy {
             BoatInput.setKey(BoatKeycodes.KEY_ENTER,0,false);
         }
         else if (launcher == 2) {
-            CallbackBridge.sendKeyPress(LWJGLGLFWKeycode.GLFW_KEY_ENTER);
+            CallbackBridge.sendKeyPress(LwjglGlfwKeycode.GLFW_KEY_ENTER);
         }
     }
 

@@ -5,12 +5,17 @@
     <string name="dialog_unknown_error_positive">确定</string>
 
     <string name="dialog_verify_title">开发版测试权限验证</string>
-    <string name="dialog_verify_msg">您的设备码为：\n%s\n请填写与此设备码匹配的授权验证码。</string>
-    <string name="dialog_verify_code">授权验证码</string>
+    <string name="dialog_verify_msg">请先登录。</string>
+    <string name="dialog_verify_logging">正在登录…</string>
+    <string name="dialog_verify_msg_sec">您的设备码为：\n%s</string>
     <string name="dialog_verify_donate">获取权限</string>
+    <string name="dialog_verify_login">登录</string>
     <string name="dialog_verify_copy">复制设备码</string>
     <string name="dialog_verify_copy_success">复制成功</string>
+    <string name="dialog_verify_login_success">登陆成功</string>
+    <string name="dialog_verify_login_fail">登录失败</string>
     <string name="dialog_verify_verify">验证</string>
+    <string name="dialog_verify_verifying">正在验证…</string>
     <string name="dialog_verify_verify_success">验证成功</string>
     <string name="dialog_verify_verify_fail">验证失败</string>
     <string name="dialog_verify_cancel">取消</string>
@@ -44,6 +49,11 @@
     <string name="loading_hint_java_17_unzip">正在解压 Java 17…</string>
     <string name="loading_hint_ready">准备就绪，即将进入启动器…</string>
     <string name="loading_hint_failed">核心资源安装/更新失败，请检查网络并重启应用，如果无效，请联系开发者</string>
+
+    <string name="dialog_first_start_title">欢迎使用</string>
+    <string name="dialog_first_start_msg">欢迎使用 HMCL-PE，本应用尝试在 Android 设备上实现 HMCL 的 UI 和功能，但并非是 HMCL 的分支。\n\n在使用前，您需要先阅读并同意用户协议。</string>
+    <string name="dialog_first_start_eula">用户协议</string>
+    <string name="dialog_first_start_positive">同意并继续</string>
 
     <string name="launcher_scroll_text_account">账户</string>
     <string name="launcher_scroll_account_name">没有游戏账户</string>
@@ -412,6 +422,7 @@
     <string name="install_game_ui_forge_not_compatible">与 Forge 不兼容</string>
     <string name="install_game_ui_fabric_not_compatible">与 Fabric 不兼容</string>
     <string name="install_game_ui_optifine_not_compatible">与 OptiFine 不兼容</string>
+    <string name="install_game_ui_quilt_not_compatible">与 Quilt 不兼容</string>
     <string name="install_game_ui_install">安装</string>
     <string name="install_game_ui_exist">此版本已经存在，请换一个名字</string>
 
@@ -420,6 +431,8 @@
     <string name="lite_loader_list_ui_title">安装新游戏版本 - 选择 LiteLoader 版本</string>
     <string name="optifine_list_ui_title">安装新游戏版本 - 选择 OptiFine 版本</string>
     <string name="fabric_api_list_ui_title">安装新游戏版本 - 选择 Fabric API 版本</string>
+    <string name="quilt_list_ui_title">安裝新遊戲版本 - 選擇 Quilt 版本</string>
+    <string name="quilt_api_list_ui_title">安裝新遊戲版本 - 選擇 Quilt API 版本</string>
     <string name="fabric_api_list_ui_warn">警告</string>
     <string name="fabric_api_list_ui_positive">确定</string>
     <string name="fabric_api_list_ui_warn_text">警告: Fabric API 是一个 Mod，将会被安装到新游戏的 Mod 文件夹，请你在安装游戏后不要修改当前游戏的版本隔离/游戏运行路径设置，如果你在之后修改了相关设置，Fabric API 需要被重新安装</string>
@@ -451,6 +464,8 @@
     <string name="dialog_install_game_install_optifine">安装 Optifine</string>
     <string name="dialog_install_game_install_fabric">安装 Fabric</string>
     <string name="dialog_install_game_install_fabric_api">安装 Fabric API</string>
+    <string name="dialog_install_game_install_quilt">安装 Quilt</string>
+    <string name="dialog_install_game_install_quilt_api">安装 Quilt API</string>
     <string name="dialog_install_game_exit">取消</string>
 
     <string name="dialog_install_success_title">提示</string>
@@ -471,6 +486,10 @@
     <string name="dialog_incorrect_fabric_title">安装失败</string>
     <string name="dialog_incorrect_fabric_msg">当前软件与 Fabric 不兼容，请先卸载 Fabric。</string>
     <string name="dialog_incorrect_fabric_positive">确定</string>
+
+    <string name="dialog_incorrect_quilt_title">安装失败</string>
+    <string name="dialog_incorrect_quilt_msg">当前软件与 Quilt 不兼容，请先卸载 Quilt。</string>
+    <string name="dialog_incorrect_quilt_positive">确定</string>
 
     <string name="download_mod_ui_game">游戏</string>
     <string name="download_mod_ui_source">下载源</string>
@@ -652,11 +671,41 @@
 
     <string name="multi_player_ui_title">多人联机</string>
     <string name="multi_player_ui_launch">启动游戏</string>
-    <string name="multi_player_ui_community">房间</string>
-    <string name="multi_player_ui_create">创建房间</string>
-    <string name="multi_player_ui_join">加入房间</string>
+    <string name="multi_player_ui_pattern">联机方案</string>
+    <string name="multi_player_ui_hiper">HiPer</string>
+    <string name="multi_player_ui_hin2n">Hin2n</string>
     <string name="multi_player_ui_help">帮助</string>
     <string name="multi_player_ui_feedback">反馈</string>
+
+    <string name="hin2n_ui_create">创建房间</string>
+    <string name="hin2n_ui_join">加入房间</string>
+    <string name="hin2n_ui_create_btn">创建</string>
+    <string name="hin2n_ui_join_btn">加入</string>
+
+    <string name="hiper_ui_verify_launch">启动 Hiper</string>
+    <string name="hiper_ui_verify_alert">提示</string>
+    <string name="hiper_ui_verify_alert_text">该方案由 HiPer 提供，你需要先授予 HMCL-PE 开启 VPN 权限，然后输入凭证启动 HiPer 以使用该方案。</string>
+    <string name="hiper_ui_verify_code">凭证</string>
+    <string name="hiper_ui_verify_apply">申请凭证</string>
+
+    <string name="hiper_ui_start_title">HiPer</string>
+    <string name="hiper_ui_start_creator_title">创建方提示</string>
+    <string name="hiper_ui_start_tutorial">教学视频</string>
+    <string name="hiper_ui_start_creator_alert">提示</string>
+    <string name="hiper_ui_start_creator_alert_text">1.启动游戏\n2.选择单人游戏模式进入一个存档\n3.在游戏选项菜单内选择 对局域网开放 选项，之后你可以在游戏聊天框内看到游戏提示的端口号（通常是 4~5 位数字）\n4.点击下方的生成服务器地址按钮，输入端口号，你就可以获得你的服务器地址了\n5.该地址需要提供给其他需要加入服务器的玩家用于添加服务器。</string>
+    <string name="hiper_ui_start_port">端口号</string>
+    <string name="hiper_ui_start_gen">生成服务器地址</string>
+    <string name="hiper_ui_start_copy">拷贝</string>
+    <string name="hiper_ui_start_participant_title">参与者提示</string>
+    <string name="hiper_ui_start_participant_alert">提示</string>
+    <string name="hiper_ui_start_participant_alert_text">1.要求创建方按照上方的 创建方提示 操作\n2.启动游戏\n3.选择多人游戏模式，选择添加服务器\n4.游戏会要求你输入服务器地址，你只需要向创建方索要服务器地址并输入，并进入服务器即可。\n- 注意：\n1.一般情况下，参与者的游戏账户必须是 微软账户 或 外置登录账户（如 Little Skin），否则你需要将服务器地址输入至下方的输入框中并点击“加入”，在游戏中选择多人游戏模式，进入局域网世界方可加入，具体操作方法详见左侧的 帮助 \n2.一般情况下，参与者的游戏版本、模组要必须与创建方的一致，否则加入失败。</string>
+    <string name="hiper_ui_start_address">创建方服务器地址</string>
+    <string name="hiper_ui_start_join">加入</string>
+    <string name="hiper_ui_start_exit">退出</string>
+
+    <string name="hiper_ui_about">关于</string>
+    <string name="hiper_ui_sujv">本服务由速聚授权提供</string>
+    <string name="hiper_ui_eula">授权协议</string>
 
     <string name="setting_ui_title">设置</string>
     <string name="setting_ui_public_game_setting">全局游戏设置</string>
@@ -769,6 +818,8 @@
     <string name="download_setting_ui_download_alert">提示</string>
     <string name="download_setting_ui_download_alert_text">并发数过大可能导致系统卡顿。你的下载速度会受到宽带运营商、服务器等方面的影响，调大下载并发数不一定能大幅提升总下载速度。</string>
 
+    <string name="feedback_ui_join_discord">加入官方 Discord</string>
+    <string name="feedback_ui_join_qq_channel">加入官方 QQ 频道</string>
     <string name="feedback_ui_join_qq">加入官方 QQ 群(不推荐)</string>
     <string name="feedback_ui_github_issues">前往 Github 反馈</string>
 
@@ -972,6 +1023,7 @@
     <string name="dialog_create_community_name">房间名称</string>
     <string name="dialog_create_community_port">端口号</string>
     <string name="dialog_create_community_getting">检测中…</string>
+    <string name="dialog_create_community_error">无法检测游戏端口号，你需启动游戏并在游戏内打开 对局域网开放 选项方能启动联机！</string>
     <string name="dialog_create_community_positive">确定</string>
     <string name="dialog_create_community_negative">取消</string>
 
@@ -1014,6 +1066,8 @@
     <string name="drawer_game_menu_control_sensor_open_alert">已开启陀螺仪</string>
     <string name="drawer_game_menu_control_sensor_close_alert">已关闭陀螺仪</string>
     <string name="drawer_game_menu_control_sensor_sensitivity">陀螺仪灵敏度</string>
+    <string name="drawer_game_menu_control_touch">启用手势</string>
+    <string name="drawer_game_menu_control_mouse_patch">鼠标右键补丁</string>
     <string name="drawer_game_menu_control_half_screen">取消左半屏触控</string>
     <string name="drawer_game_menu_control_half_screen_enable">已取消左半屏触控</string>
     <string name="drawer_game_menu_control_half_screen_disable">已启用左半屏触控</string>
@@ -1049,9 +1103,23 @@
     <string name="drawer_custom_menu_add_view">添加</string>
     <string name="drawer_custom_menu_warn">你需要先创建或选择一个子布局</string>
 
+    <string name="ui_help_doc">Hello Minecraft! Launcher 帮助文档</string>
+    <string name="ui_help_doc_sub">可查阅各类指南。</string>
+    <string name="doc_list_load_fail">无法获取文档列表，请点击这里重试。</string>
+
+    <string name="dialog_contributor_list_title">贡献者列表</string>
+
     <string name="ui_about_about">关于</string>
+    <string name="ui_about_tungsten_sub">B 站 ID：@念小六</string>
+    <string name="ui_about_shirosakimio_sub">B 站 ID：@ShirosakiMio</string>
     <string name="ui_about_thank">鸣谢</string>
+    <string name="ui_about_community">社区</string>
+    <string name="ui_about_lib">依赖</string>
+    <string name="ui_about_legal">法律声明</string>
+    <string name="ui_about_community_developer">社区开发者</string>
+    <string name="ui_about_community_developer_sub">提供语言翻译及 Bug 修复</string>
     <string name="ui_about_cosine_sub">提供大量技术支持</string>
+    <string name="ui_about_legacy_sub">提升兼容性以及测试</string>
     <string name="ui_about_tsaltedfishking_sub">提供 HMCL-PE 官网模板</string>
     <string name="ui_about_hmcl_main">HMCL 开发团队及所有贡献者</string>
     <string name="ui_about_hmcl_sub">本项目大量借鉴 HMCL</string>
@@ -1062,7 +1130,15 @@
     <string name="ui_about_mcmod_sub">提供 Mod 中文名映射表与 Mod 百科</string>
     <string name="ui_about_github_main">所有通过 Issues、赞助等方式参与本项目的贡献者</string>
     <string name="ui_about_github_sub">感谢各位的建议、bug 反馈及赞助</string>
-    <string name="dialog_create_community_error">无法检测游戏端口号，你需启动游戏并在游戏内打开 对局域网开放 选项方能启动联机！</string>
-    <string name="feedback_ui_join_discord">加入官方 Discord</string>
-    <string name="feedback_ui_join_qq_channel">加入官方 QQ 频道</string>
+    <string name="ui_about_copy_right">版权</string>
+    <string name="ui_about_copy_right_statement">版权所有 © 2022 Huanghongxun</string>
+    <string name="ui_about_eula">用户协议</string>
+    <string name="ui_about_eula_statement">点击链接以查看全文</string>
+    <string name="ui_about_open_source">开源</string>
+
+    <string name="ui_about_community_qq_community">QQ 频道</string>
+    <string name="ui_about_community_qq">QQ 群</string>
+    <string name="ui_about_community_discord_join">欢迎加入 Discord 讨论区，加入后请遵守讨论区规定</string>
+    <string name="ui_about_community_qq_community_join">欢迎加入 QQ 频道，加入后请遵守讨论区规定</string>
+    <string name="ui_about_community_qq_join">欢迎加入 QQ 群，加入后请遵守讨论区规定</string>
 </resources>

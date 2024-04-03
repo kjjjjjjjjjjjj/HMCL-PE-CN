@@ -9,7 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.InputDevice;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.WindowManager;
 
@@ -18,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.tungsten.hmclpe.R;
+import com.tungsten.hmclpe.control.InputBridge;
 import com.tungsten.hmclpe.control.MenuHelper;
 import com.tungsten.hmclpe.control.view.LayoutPanel;
 import com.tungsten.hmclpe.launcher.setting.game.GameLaunchSetting;
@@ -25,6 +28,11 @@ import com.tungsten.hmclpe.launcher.setting.game.GameLaunchSetting;
 import com.tungsten.hmclpe.launcher.launch.MCOptionUtils;
 import com.tungsten.hmclpe.utils.LocaleUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
 import java.util.Vector;
 
 import cosine.boat.BoatActivity;
@@ -67,7 +75,7 @@ public class BoatMinecraftActivity extends BoatActivity {
         drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_control_pattern, null);
         addContentView(drawerLayout, params);
 
-        baseLayout = findViewById(R.id.base_layout);
+        baseLayout = drawerLayout.findViewById(R.id.base_layout);
 
         scaleFactor = gameLaunchSetting.scaleFactor;
 
@@ -83,7 +91,18 @@ public class BoatMinecraftActivity extends BoatActivity {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
                 surface.setDefaultBufferSize((int) (width * scaleFactor), (int) (height * scaleFactor));
+                BoatInput.pushEventWindow(width,height);
 
+                File options=new File(gameLaunchSetting.game_directory,"options.txt");
+                if (!options.exists()){
+                    try(FileOutputStream out=new FileOutputStream(options);InputStream in = BoatMinecraftActivity.this.getAssets().open("options.txt")){
+                        byte[] b=new byte[in.available()];
+                        in.read(b);
+                        out.write(b);
+                    }catch (Exception ignored){
+
+                    }
+                }
                 MCOptionUtils.load(gameLaunchSetting.game_directory);
                 MCOptionUtils.set("overrideWidth", String.valueOf((int) (width * scaleFactor)));
                 MCOptionUtils.set("overrideHeight", String.valueOf((int) (height * scaleFactor)));
@@ -109,6 +128,7 @@ public class BoatMinecraftActivity extends BoatActivity {
             @Override
             public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
                 surface.setDefaultBufferSize((int) (width * scaleFactor), (int) (height * scaleFactor));
+                BoatInput.pushEventWindow(width,height);
             }
 
             @Override
@@ -146,12 +166,33 @@ public class BoatMinecraftActivity extends BoatActivity {
             super.handleMessage(msg);
             if (msg.what == BoatInput.CursorDisabled) {
                 menuHelper.disableCursor();
-            }
-            if (msg.what == BoatInput.CursorEnabled) {
+            }else if (msg.what == BoatInput.CursorEnabled) {
                 menuHelper.enableCursor();
             }
         }
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (menuHelper.gameMenuSetting.mousePatch) {
+            if (event.getKeyCode()==KeyEvent.KEYCODE_BACK){
+                InputBridge.sendMouseEvent(1, InputBridge.MOUSE_RIGHT, true);
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (menuHelper.gameMenuSetting.mousePatch) {
+            if (event.getKeyCode()==KeyEvent.KEYCODE_BACK){
+                InputBridge.sendMouseEvent(1, InputBridge.MOUSE_RIGHT, false);
+                return true;
+            }
+        }
+        return super.onKeyUp(keyCode, event);
+    }
 
     @Override
     public void onBackPressed() {

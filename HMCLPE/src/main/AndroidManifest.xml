@@ -35,6 +35,12 @@
         android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission
         android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO" />
+
+    <queries>
+        <package android:name="com.tencent.mobileqq" />
+    </queries>
 
     <application
         android:name=".launcher.HMCLPEApplication"
@@ -110,6 +116,23 @@
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.HelloMinecraftLauncherPocketEdition"/>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="102019361" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <service
             android:name=".launcher.launch.boat.VirGLService"
             android:process=":virGLProcess"
@@ -121,11 +144,19 @@
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".multiplayer.Hin2nService"
+            android:name=".multiplayer.hin2n.Hin2nService"
             android:exported="true"
             android:permission="android.permission.BIND_VPN_SERVICE">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".multiplayer.hiper.HiPerService"
+            android:permission="android.permission.BIND_VPN_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.VpnService"/>
             </intent-filter>
         </service>
     </application>

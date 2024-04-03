@@ -10,6 +10,7 @@ import android.graphics.SurfaceTexture;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.InputDevice;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.WindowManager;
 
@@ -17,12 +18,13 @@ import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.tungsten.hmclpe.R;
+import com.tungsten.hmclpe.control.InputBridge;
 import com.tungsten.hmclpe.control.MenuHelper;
 import com.tungsten.hmclpe.control.view.LayoutPanel;
 import com.tungsten.hmclpe.launcher.setting.game.GameLaunchSetting;
 
 import net.kdt.pojavlaunch.BaseMainActivity;
-import net.kdt.pojavlaunch.keyboard.LWJGLGLFWKeycode;
+import net.kdt.pojavlaunch.keyboard.LwjglGlfwKeycode;
 import net.kdt.pojavlaunch.function.PojavCallback;
 import net.kdt.pojavlaunch.utils.JREUtils;
 import com.tungsten.hmclpe.launcher.launch.MCOptionUtils;
@@ -151,6 +153,24 @@ public class PojavMinecraftActivity extends BaseMainActivity {
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (menuHelper.gameMenuSetting.mousePatch && keyCode == KeyEvent.KEYCODE_BACK) {
+            InputBridge.sendMouseEvent(1, InputBridge.MOUSE_RIGHT, true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (menuHelper.gameMenuSetting.mousePatch && keyCode == KeyEvent.KEYCODE_BACK) {
+            InputBridge.sendMouseEvent(1, InputBridge.MOUSE_RIGHT, false);
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
     public void onBackPressed() {
         boolean mouse = false;
         final int[] devices = InputDevice.getDeviceIds();
@@ -170,7 +190,7 @@ public class PojavMinecraftActivity extends BaseMainActivity {
             }
         }
         if (!mouse) {
-            CallbackBridge.sendKeyPress(LWJGLGLFWKeycode.GLFW_KEY_ESCAPE);
+            CallbackBridge.sendKeyPress(LwjglGlfwKeycode.GLFW_KEY_ESCAPE);
         }
     }
 
@@ -188,7 +208,7 @@ public class PojavMinecraftActivity extends BaseMainActivity {
     @Override
     protected void onPause() {
         if (menuHelper.viewManager != null && menuHelper.gameCursorMode == 1) {
-            CallbackBridge.sendKeyPress(LWJGLGLFWKeycode.GLFW_KEY_ESCAPE);
+            CallbackBridge.sendKeyPress(LwjglGlfwKeycode.GLFW_KEY_ESCAPE);
         }
         super.onPause();
     }

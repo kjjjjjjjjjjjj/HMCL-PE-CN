@@ -11,11 +11,13 @@ import java.io.File;
 
 public class GameMenuSetting {
 
-    public static final int GAME_MENU_VERSION = 2;
+    public static final int GAME_MENU_VERSION = 4;
 
     public MenuFloatSetting menuFloatSetting;
     public MenuViewSetting menuViewSetting;
     public boolean menuSlideSetting;
+    public boolean enableTouch;
+    public boolean mousePatch;
     public boolean enableSensor;
     public int sensitivity;
     public boolean advanceInput;
@@ -27,10 +29,12 @@ public class GameMenuSetting {
     public boolean hideUI;
     public int version;
 
-    public GameMenuSetting(MenuFloatSetting menuFloatSetting,MenuViewSetting menuViewSetting,boolean menuSlideSetting,boolean enableSensor,int sensitivity,boolean advanceInput,boolean disableHalfScreen,int touchMode,int mouseMode,float mouseSpeed,int mouseSize,boolean hideUI,int version){
+    public GameMenuSetting(MenuFloatSetting menuFloatSetting,MenuViewSetting menuViewSetting,boolean menuSlideSetting,boolean enableTouch,boolean mousePatch,boolean enableSensor,int sensitivity,boolean advanceInput,boolean disableHalfScreen,int touchMode,int mouseMode,float mouseSpeed,int mouseSize,boolean hideUI,int version){
         this.menuFloatSetting = menuFloatSetting;
         this.menuViewSetting = menuViewSetting;
         this.menuSlideSetting = menuSlideSetting;
+        this.enableTouch = enableTouch;
+        this.mousePatch = mousePatch;
         this.enableSensor = enableSensor;
         this.sensitivity = sensitivity;
         this.advanceInput = advanceInput;
@@ -50,6 +54,8 @@ public class GameMenuSetting {
             gameMenuSetting = new GameMenuSetting(new MenuFloatSetting(true,true,0.5f,0.5f),
                     new MenuViewSetting(true, MenuView.MENU_MODE_LEFT,0.2f),
                     true,
+                    true,
+                    false,
                     false,
                     10,
                     false,
@@ -67,6 +73,8 @@ public class GameMenuSetting {
             Gson gson = new Gson();
             gameMenuSetting = gson.fromJson(string,GameMenuSetting.class);
             if (gameMenuSetting.version == 0) {
+                gameMenuSetting.enableTouch = true;
+                gameMenuSetting.mousePatch = false;
                 gameMenuSetting.enableSensor = false;
                 gameMenuSetting.sensitivity = 10;
                 gameMenuSetting.disableHalfScreen = false;
@@ -78,8 +86,21 @@ public class GameMenuSetting {
                 gameMenuSetting.version = GAME_MENU_VERSION;
                 saveGameMenuSetting(gameMenuSetting);
             }
-            if (gameMenuSetting.version == 1){
+            if (gameMenuSetting.version == 1) {
                 gameMenuSetting.sensitivity = 10;
+                gameMenuSetting.enableTouch = true;
+                gameMenuSetting.mousePatch = false;
+                gameMenuSetting.version = GAME_MENU_VERSION;
+                saveGameMenuSetting(gameMenuSetting);
+            }
+            if (gameMenuSetting.version == 2) {
+                gameMenuSetting.enableTouch = true;
+                gameMenuSetting.mousePatch = false;
+                gameMenuSetting.version = GAME_MENU_VERSION;
+                saveGameMenuSetting(gameMenuSetting);
+            }
+            if (gameMenuSetting.version == 3) {
+                gameMenuSetting.mousePatch = false;
                 gameMenuSetting.version = GAME_MENU_VERSION;
                 saveGameMenuSetting(gameMenuSetting);
             }
